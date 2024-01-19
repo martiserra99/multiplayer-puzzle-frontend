@@ -12,22 +12,16 @@ import { JsonRoom, JsonUsers, JsonUser, JsonPiece } from "../types";
 
 import styles, { colors } from "../styles";
 
-export default class Element {
-  public element: Layout;
+export default class Area {
+  public area: Layout;
 
-  private area: Layout;
   private users: Layout;
   private puzzle: Puzzle;
   private pieces: Pieces;
 
   constructor() {
-    this.element = canvasUI.layout.new("element", "frame");
-    this.element.set("background", styles.background);
-
-    this.area = canvasUI.layout.new("area", "frame");
-
-    this.element.insert(this.area);
-    this.area.layoutParams.get("margin").top = 4;
+    this.area = canvasUI.layout.new("element", "frame");
+    this.area.set("background", styles.background);
 
     const linear = canvasUI.layout.new("linear", "linear");
     linear.set("size", { width: "auto", height: "auto" });

@@ -26,7 +26,7 @@ export default class Pieces {
       ],
       rows: [
         {
-          count: 2,
+          count: Math.floor((config.pieces - 1) / 4) + 1,
           unit: "px",
           value:
             config.dimensions.y * styles.square.size +

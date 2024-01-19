@@ -1,15 +1,15 @@
 import canvasUI, { UI, Coords } from "canvas-user-interface";
 
-import Element from "./element";
+import Area from "./area";
 
 import { JsonRoom } from "../types";
 
 export default class View {
   private ui: UI = canvasUI.ui.new("#ui");
-  private element: Element = new Element();
+  private element: Area = new Area();
 
   constructor() {
-    this.ui.start(this.element.element);
+    this.ui.start(this.element.area);
   }
 
   update(room: JsonRoom) {
