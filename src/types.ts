@@ -12,7 +12,7 @@ export type JsonUser = {
   style: number;
   coords: Position;
   rotate: number;
-  selected: { piece: JsonPiece; offset: Position } | null;
+  selectedPiece: JsonSelectedPiece | null;
 };
 
 export type JsonPuzzle = {
@@ -26,6 +26,11 @@ export type JsonPiece = {
   id: number;
   style: number;
   positions: Position[];
+};
+
+export type JsonSelectedPiece = {
+  piece: JsonPiece;
+  offset: Position;
 };
 
 export type Position = {

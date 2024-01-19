@@ -60,9 +60,9 @@ export default class Element {
   updateUsers(users: JsonUsers) {
     this.users.removeAll();
     for (const user of users) {
-      if (user.selected) {
-        const piece = this.createPiece(user.selected.piece);
-        this.insertPiece(piece, user, user.selected.offset);
+      if (user.selectedPiece) {
+        const piece = this.createPiece(user.selectedPiece.piece);
+        this.insertPiece(piece, user, user.selectedPiece.offset);
       }
       const pointer = this.createPointer(user);
       this.insertPointer(pointer, user);
