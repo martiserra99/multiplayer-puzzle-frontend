@@ -51,8 +51,8 @@ export default class Users {
   private insertPiece(piece: Composite, user: JsonUser, offset: Coords) {
     this.element.insert(piece);
     piece.layoutParams.set("margin", {
-      top: user.coords.y + offset.y,
-      left: user.coords.x + offset.x,
+      top: user.coords.y - offset.y,
+      left: user.coords.x - offset.x,
       right: 0,
       bottom: 0,
     });

@@ -8,9 +8,7 @@ import styles, { effect, colors } from "../styles";
 export default class Pieces {
   public element: Layout;
 
-  private onSelect:
-    | ((id: number, coords: Coords, offset: Coords) => void)
-    | null = null;
+  private onSelect: ((id: number, offset: Coords) => void) | null = null;
 
   constructor() {
     const pieces = canvasUI.layout.new("pieces", "grid");
@@ -193,7 +191,7 @@ export default class Pieces {
           x: coords.x - piece.coords.x,
           y: coords.y - piece.coords.y,
         };
-        this.onSelect!(id, coords, offset);
+        this.onSelect!(id, offset);
       }
     );
   }
@@ -216,9 +214,7 @@ export default class Pieces {
     }
   }
 
-  handlerSelect(
-    callback: (id: number, coords: Coords, offset: Coords) => void
-  ) {
+  handlerSelect(callback: (id: number, offset: Coords) => void) {
     this.onSelect = callback;
   }
 }

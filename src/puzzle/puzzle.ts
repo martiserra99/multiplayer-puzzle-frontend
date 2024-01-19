@@ -25,8 +25,8 @@ export default function puzzle(socket: Socket, roomId: string): () => void {
     socket.emit("room:rotate-focus", { roomId, position });
   });
 
-  view.handlerSelectFromPieces((id, coords, offset) => {
-    socket.emit("room:select-from-pieces", { roomId, id, coords, offset });
+  view.handlerSelectFromPieces((id, offset) => {
+    socket.emit("room:select-from-pieces", { roomId, id, offset });
   });
 
   socket.on("room:get", (room: JsonRoom) => {

@@ -37,9 +37,7 @@ export default class View {
     this.content.handlerRotateFocus(callback);
   }
 
-  handlerSelectFromPieces(
-    callback: (id: number, coords: Coords, offset: Coords) => void
-  ) {
+  handlerSelectFromPieces(callback: (id: number, offset: Coords) => void) {
     this.content.handlerSelectFromPieces(callback);
   }
 }
