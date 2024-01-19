@@ -90,12 +90,10 @@ export default class Element {
 
   private insertPiece(piece: Composite, user: JsonUser, offset: Coords) {
     this.users.insert(piece);
-    piece.layoutParams.set("margin", {
-      top: user.coords.y - offset.y,
-      left: user.coords.x - offset.x,
-      right: 0,
-      bottom: 0,
-    });
+    const y = this.yFromCorner(user.coords.y);
+    const x = this.xFromCorner(user.coords.x);
+    piece.layoutParams.get("margin").top = y - offset.y;
+    piece.layoutParams.get("margin").left = x - offset.x;
   }
 
   private createPointer(user: JsonUser) {
@@ -106,23 +104,27 @@ export default class Element {
 
   private insertPointer(pointer: View, user: JsonUser) {
     this.users.insert(pointer);
-    pointer.layoutParams.set("margin", {
-      top: user.coords.y,
-      left: user.coords.x,
-      right: 0,
-      bottom: 0,
-    });
+    const y = this.yFromCorner(user.coords.y);
+    const x = this.xFromCorner(user.coords.x);
+    pointer.layoutParams.get("margin").top = y;
+    pointer.layoutParams.get("margin").left = x;
   }
 
   handlerMove(callback: (coords: Coords) => void) {
     this.area.listeners.add("mousemove", (_: Layout, coords: Coords) => {
-      callback(coords);
+      callback({
+        x: this.xFromCenter(coords.x),
+        y: this.yFromCenter(coords.y),
+      });
     });
   }
 
   handlerMouseup(callback: (coords: Coords) => void) {
     this.area.listeners.add("mouseup", (_: Layout, coords: Coords) => {
-      callback(coords);
+      callback({
+        x: this.xFromCenter(coords.x),
+        y: this.yFromCenter(coords.y),
+      });
     });
   }
 
@@ -136,5 +138,21 @@ export default class Element {
 
   handlerSelectFromPieces(callback: (id: number, offset: Coords) => void) {
     this.pieces.handlerSelect(callback);
+  }
+
+  private xFromCenter(x: number) {
+    return x - this.area.size.width / 2;
+  }
+
+  private yFromCenter(y: number) {
+    return y - this.area.size.height / 2;
+  }
+
+  private xFromCorner(x: number) {
+    return x + this.area.size.width / 2;
+  }
+
+  private yFromCorner(y: number) {
+    return y + this.area.size.height / 2;
   }
 }

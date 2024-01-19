@@ -19,7 +19,7 @@ export default function Puzzle({ socket, roomId }: PuzzleProps) {
           <CopyLink />
         </div>
       </div>
-      <canvas id="ui" className="h-[calc(100vh-56px)] w-full cursor-none" />
+      <canvas id="ui" className="h-[calc(100vh-56px)] w-full" />
     </div>
   );
 }
