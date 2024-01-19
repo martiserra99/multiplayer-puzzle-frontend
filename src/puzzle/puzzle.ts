@@ -1,6 +1,6 @@
 import { Socket } from "socket.io-client";
 
-import View from "../view/view";
+import View from "../view";
 
 import { JsonRoom } from "../types";
 
