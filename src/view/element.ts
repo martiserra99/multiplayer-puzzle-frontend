@@ -1,50 +1,42 @@
 import canvasUI, { Layout, Coords } from "canvas-user-interface";
 
 import Users from "./view.users";
-import Puzzle from "./view.puzzle";
-import Pieces from "./view.pieces";
+import Puzzle from "./puzzle";
+import Pieces from "./pieces";
 
 import { JsonRoom } from "../types";
 
 import styles from "../styles";
 
-export default class Content {
+export default class Element {
   public element: Layout;
+
+  private area: Layout;
 
   private users: Users;
   private puzzle: Puzzle;
   private pieces: Pieces;
 
   constructor() {
-    const content = canvasUI.layout.new("content", "frame");
-    content.set("background", styles.background);
+    this.element = canvasUI.layout.new("element", "frame");
+    this.element.set("background", styles.background);
 
-    const frame = canvasUI.layout.new("frame", "frame");
+    this.area = canvasUI.layout.new("area", "frame");
 
-    content.insert(frame);
-    frame.layoutParams.set("margin", {
-      top: 4,
-      left: 0,
-      right: 0,
-      bottom: 0,
-    });
+    this.element.insert(this.area);
+    this.area.layoutParams.get("margin").top = 4;
 
     const linear = canvasUI.layout.new("linear", "linear");
     linear.set("size", { width: "auto", height: "auto" });
     linear.set("direction", "vertical");
     linear.set("gap", styles.puzzle.margin);
 
-    frame.insert(linear);
+    this.area.insert(linear);
     linear.layoutParams.set("align", {
       horizontal: "middle",
       vertical: "middle",
     });
-    linear.layoutParams.set("margin", {
-      top: 0,
-      left: 0,
-      right: 0,
-      bottom: 56,
-    });
+    linear.layoutParams.get("margin").bottom = 56;
 
     const puzzle = new Puzzle();
 
@@ -62,9 +54,8 @@ export default class Content {
 
     const users = new Users();
 
-    frame.insert(users.element);
+    this.area.insert(users.element);
 
-    this.element = content;
     this.users = users;
     this.puzzle = puzzle;
     this.pieces = pieces;
