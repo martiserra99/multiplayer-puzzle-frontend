@@ -15,9 +15,24 @@ export default class Users {
   update(users: JsonUsers) {
     this.element.removeAll();
     for (const user of users) {
-      const pointer = canvasUI.view.new(`user-${user.id}`, "pointer");
-      pointer.set("radius", 12);
-      pointer.set("background", colors[user.style][0]);
+      // if (user.selected) {
+      //   const piece = canvasUI.view.new(`user-piece-${user.id}`, "piece");
+      //   piece.set("positions", user.selected.piece.positions);
+      //   piece.set("square", {
+      //     size: 48,
+      //     background: colors[user.style][0],
+      //     border: {
+      //       size: 2,
+      //       color: colors[user.style][1],
+      //     },
+      //     corner: {
+      //       type: "round",
+      //       size: 8,
+      //     },
+      //   });
+      // }
+      const pointer = canvasUI.view.new(`user--pointer-${user.id}`, "pointer");
+      pointer.set("color", colors[user.style][0]);
       this.element.insert(pointer);
       pointer.layoutParams.set("margin", {
         top: user.coords.y,

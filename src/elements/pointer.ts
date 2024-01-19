@@ -5,8 +5,7 @@ const pointer = canvasUI.view.newType("pointer");
 // -------------------------------------------------
 // Properties
 // -------------------------------------------------
-pointer.set("background", "#000");
-pointer.set("border", "#000");
+pointer.set("color", "#000");
 
 pointer.lifecycle.set("getSize", function (_: View, maxSize: Size) {
   let radius = 12;
@@ -18,7 +17,7 @@ pointer.lifecycle.set("getSize", function (_: View, maxSize: Size) {
 pointer.lifecycle.set(
   "drawItself",
   function (pointer: View, ctx: CanvasRenderingContext2D) {
-    const background = pointer.get("background");
+    const color = pointer.get("color");
     drawRoundedPolygon({
       ctx,
       x: pointer.coords.x + 3,
@@ -27,9 +26,9 @@ pointer.lifecycle.set(
       rotation: 90,
       cornerPercent: 80,
       numberOfCorners: 3,
-      fillStyle: background,
+      fillStyle: color,
     });
-  },
+  }
 );
 
 function drawRoundedPolygon({
