@@ -22,12 +22,7 @@ export default class View {
   }
 
   handlerMove(callback: (coords: Coords) => void) {
-    this.content.element.listeners.add(
-      "mousemove",
-      (_: Layout, coords: Coords) => {
-        callback(coords);
-      },
-    );
+    this.content.handlerMove(callback);
   }
 
   handlerMouseup(callback: () => void) {
@@ -45,7 +40,7 @@ export default class View {
   }
 
   handlerSelectFromPieces(
-    callback: (id: number, coords: Coords, offset: Coords) => void,
+    callback: (id: number, coords: Coords, offset: Coords) => void
   ) {
     this.content.handlerSelectFromPieces(callback);
   }

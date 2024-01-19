@@ -76,6 +76,13 @@ export default class Content {
     this.pieces.update(room.pieces, room.users);
   }
 
+  handlerMove(callback: (coords: Coords) => void) {
+    const frame = this.element.find("frame") as Layout;
+    frame.listeners.add("mousemove", (_: Layout, coords: Coords) => {
+      callback(coords);
+    });
+  }
+
   handlerRotate(callback: (position: number) => void) {
     this.pieces.handlerRotate(callback);
   }
@@ -85,7 +92,7 @@ export default class Content {
   }
 
   handlerSelectFromPieces(
-    callback: (id: number, coords: Coords, offset: Coords) => void,
+    callback: (id: number, coords: Coords, offset: Coords) => void
   ) {
     this.pieces.handlerSelect(callback);
   }
