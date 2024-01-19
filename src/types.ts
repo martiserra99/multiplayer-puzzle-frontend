@@ -15,10 +15,12 @@ export type JsonUser = {
   selectedPiece: JsonSelectedPiece | null;
 };
 
-export type JsonPuzzle = {
+export type JsonPuzzle = JsonPuzzlePiece[];
+
+export type JsonPuzzlePiece = {
   position: Position;
   piece: JsonPiece;
-}[];
+};
 
 export type JsonPieces = JsonPiece[];
 

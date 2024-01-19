@@ -1,12 +1,16 @@
-import canvasUI, { Composite } from "canvas-user-interface";
+import canvasUI, { Composite, Coords } from "canvas-user-interface";
 
-import { JsonPuzzle } from "../types";
+import { JsonPiece, JsonPuzzle } from "../types";
 
 import config from "../config";
 import styles from "../styles";
 
+type Data = { piece: JsonPiece; pieceCoords: Coords; mouseCoords: Coords };
+
 export default class Puzzle {
   public element: Composite;
+
+  private onSelect: ((id: number, offset: Coords) => void) | null = null;
 
   constructor() {
     const puzzle = canvasUI.composite.new("puzzle", "puzzle");
@@ -34,5 +38,18 @@ export default class Puzzle {
 
   update(puzzle: JsonPuzzle) {
     this.element.set("pieces", puzzle);
+  }
+
+  handlerSelect(callback: (id: number, offset: Coords) => void) {
+    this.element.listeners.add(
+      "piece-mousedown",
+      (_: Composite, { piece, pieceCoords, mouseCoords }: Data) => {
+        const offset = {
+          x: mouseCoords.x - pieceCoords.x,
+          y: mouseCoords.y - pieceCoords.y,
+        };
+        callback(piece.id, offset);
+      }
+    );
   }
 }

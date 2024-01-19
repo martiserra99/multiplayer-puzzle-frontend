@@ -2,18 +2,18 @@ import canvasUI, { UI, Coords } from "canvas-user-interface";
 
 import Area from "./area";
 
-import { JsonRoom } from "../types";
+import { JsonPiece, JsonRoom } from "../types";
 
 export default class View {
   private ui: UI = canvasUI.ui.new("#ui");
-  private element: Area = new Area();
+  private area: Area = new Area();
 
   constructor() {
-    this.ui.start(this.element.area);
+    this.ui.start(this.area.area);
   }
 
   update(room: JsonRoom) {
-    this.element.update(room);
+    this.area.update(room);
   }
 
   end() {
@@ -21,22 +21,26 @@ export default class View {
   }
 
   handlerMove(callback: (coords: Coords) => void) {
-    this.element.handlerMove(callback);
+    this.area.handlerMove(callback);
   }
 
   handlerMouseup(callback: (coords: Coords) => void) {
-    this.element.handlerMouseup(callback);
+    this.area.handlerMouseup(callback);
   }
 
   handlerRotate(callback: (position: number) => void) {
-    this.element.handlerRotate(callback);
+    this.area.handlerRotate(callback);
   }
 
   handlerRotateFocus(callback: (position: number) => void) {
-    this.element.handlerRotateFocus(callback);
+    this.area.handlerRotateFocus(callback);
   }
 
   handlerSelectFromPieces(callback: (id: number, offset: Coords) => void) {
-    this.element.handlerSelectFromPieces(callback);
+    this.area.handlerSelectFromPieces(callback);
+  }
+
+  handlerSelectFromPuzzle(callback: (id: number, offset: Coords) => void) {
+    this.area.handlerSelectFromPuzzle(callback);
   }
 }

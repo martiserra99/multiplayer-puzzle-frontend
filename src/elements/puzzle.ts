@@ -77,7 +77,7 @@ puzzle.lifecycle.set(
       const element = puzzle.inner.call("createPiece", piece);
       puzzle.inner.call("insertPiece", grid, element, position);
     }
-  },
+  }
 );
 
 puzzle.inner.fun("createPiece", function (puzzle: Composite, piece: JsonPiece) {
@@ -98,9 +98,13 @@ puzzle.inner.fun("createPiece", function (puzzle: Composite, piece: JsonPiece) {
     (element: Composite, coords: Coords) => {
       puzzle.signal({
         type: "piece-mousedown",
-        data: { piece, coords: element.coords, mouse: coords },
+        data: {
+          piece,
+          pieceCoords: element.coords,
+          mouseCoords: coords,
+        },
       });
-    },
+    }
   );
 
   return element;
@@ -115,7 +119,7 @@ puzzle.inner.fun(
     grid.insert(piece);
     piece.layoutParams.set("position", { column: x, row: y });
     piece.layoutParams.set("span", { columns, rows });
-  },
+  }
 );
 
 // -------------------------------------------------

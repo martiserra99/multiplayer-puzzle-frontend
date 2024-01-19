@@ -134,6 +134,10 @@ export default class Area {
     this.pieces.handlerSelect(callback);
   }
 
+  handlerSelectFromPuzzle(callback: (id: number, offset: Coords) => void) {
+    this.puzzle.handlerSelect(callback);
+  }
+
   private xFromCenter(x: number) {
     return x - this.area.size.width / 2;
   }
