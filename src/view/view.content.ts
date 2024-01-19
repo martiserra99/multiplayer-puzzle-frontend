@@ -83,12 +83,19 @@ export default class Content {
     });
   }
 
+  handlerMouseup(callback: () => void) {
+    const frame = this.element.find("frame") as Layout;
+    frame.listeners.add("mouseup", () => {
+      callback();
+    });
+  }
+
   handlerRotate(callback: (position: number) => void) {
     this.pieces.handlerRotate(callback);
   }
 
-  handlerRotateMousedown(callback: (position: number) => void) {
-    this.pieces.handlerRotateMousedown(callback);
+  handlerRotateFocus(callback: (position: number) => void) {
+    this.pieces.handlerRotateFocus(callback);
   }
 
   handlerSelectFromPieces(

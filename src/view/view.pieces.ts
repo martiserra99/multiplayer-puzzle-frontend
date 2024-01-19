@@ -207,7 +207,7 @@ export default class Pieces {
     }
   }
 
-  handlerRotateMousedown(callback: (position: number) => void) {
+  handlerRotateFocus(callback: (position: number) => void) {
     for (let i = 0; i < config.pieces; i++) {
       const button = this.element.find(`rotate-button-${i}`) as Composite;
       button.listeners.add("mousedown", () => {

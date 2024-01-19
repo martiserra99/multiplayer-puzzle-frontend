@@ -26,17 +26,15 @@ export default class View {
   }
 
   handlerMouseup(callback: () => void) {
-    this.content.element.listeners.add("mouseup", () => {
-      callback();
-    });
+    this.content.handlerMouseup(callback);
   }
 
   handlerRotate(callback: (position: number) => void) {
     this.content.handlerRotate(callback);
   }
 
-  handlerRotateMousedown(callback: (position: number) => void) {
-    this.content.handlerRotateMousedown(callback);
+  handlerRotateFocus(callback: (position: number) => void) {
+    this.content.handlerRotateFocus(callback);
   }
 
   handlerSelectFromPieces(
