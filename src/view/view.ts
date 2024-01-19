@@ -25,7 +25,7 @@ export default class View {
     this.content.handlerMove(callback);
   }
 
-  handlerMouseup(callback: () => void) {
+  handlerMouseup(callback: (coords: Coords) => void) {
     this.content.handlerMouseup(callback);
   }
 

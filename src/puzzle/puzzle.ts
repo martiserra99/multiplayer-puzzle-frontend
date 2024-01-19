@@ -13,8 +13,8 @@ export default function puzzle(socket: Socket, roomId: string): () => void {
     socket.emit("room:move", { roomId, coords });
   });
 
-  view.handlerMouseup(() => {
-    socket.emit("room:mouseup", { roomId });
+  view.handlerMouseup((coords) => {
+    socket.emit("room:mouseup", { roomId, coords });
   });
 
   view.handlerRotate((position) => {

@@ -83,10 +83,10 @@ export default class Content {
     });
   }
 
-  handlerMouseup(callback: () => void) {
+  handlerMouseup(callback: (coords: Coords) => void) {
     const frame = this.element.find("frame") as Layout;
-    frame.listeners.add("mouseup", () => {
-      callback();
+    frame.listeners.add("mouseup", (_: Layout, coords: Coords) => {
+      callback(coords);
     });
   }
 
